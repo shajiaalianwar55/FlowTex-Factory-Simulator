@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block title %}Product Line Queues - FlowTex Factory Simulator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Product Line Queues</h1>
+        <p class="text-muted">Queues use FIFO (First In First Out) behavior - products are processed in the order they arrive.</p>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <a href="{{ url_for('process') }}" class="btn btn-success">Process One Item from Each Queue</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Line A Queue -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5>Line A Queue <span class="badge bg-light text-dark">{{ line_a_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_a %}
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_a %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>
+                                        {% if product.inspected %}
+                                            {% if product.passed_inspection %}
+                                                <span class="badge bg-success">Passed</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Failed</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="badge bg-secondary">Not Inspected</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Queue is empty</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Line B Queue -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5>Line B Queue <span class="badge bg-light text-dark">{{ line_b_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_b %}
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_b %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>
+                                        {% if product.inspected %}
+                                            {% if product.passed_inspection %}
+                                                <span class="badge bg-success">Passed</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Failed</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="badge bg-secondary">Not Inspected</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Queue is empty</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Line C Queue -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5>Line C Queue <span class="badge bg-light text-dark">{{ line_c_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_c %}
+                    <div class="table-responsive">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_c %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>
+                                        {% if product.inspected %}
+                                            {% if product.passed_inspection %}
+                                                <span class="badge bg-success">Passed</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Failed</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="badge bg-secondary">Not Inspected</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">Queue is empty</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

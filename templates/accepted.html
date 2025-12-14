@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Accepted Products - FlowTex Factory Simulator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Accepted Products</h1>
+        <p class="text-muted">Accepted products are stored in Linked Lists - one for each production line.</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Line A Accepted -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5>Line A Accepted <span class="badge bg-light text-dark">{{ line_a_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_a %}
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_a %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>{{ "%.1f"|format(product.weight_g) }}g</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No accepted products</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Line B Accepted -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5>Line B Accepted <span class="badge bg-light text-dark">{{ line_b_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_b %}
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_b %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>{{ "%.1f"|format(product.weight_g) }}g</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No accepted products</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Line C Accepted -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5>Line C Accepted <span class="badge bg-light text-dark">{{ line_c_size }} items</span></h5>
+            </div>
+            <div class="card-body">
+                {% if line_c %}
+                    <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in line_c %}
+                                <tr>
+                                    <td>{{ product.product_id }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>{{ "%.1f"|format(product.weight_g) }}g</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No accepted products</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}
+

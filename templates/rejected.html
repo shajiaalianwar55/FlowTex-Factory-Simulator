@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Rejected Products - FlowTex Factory Simulator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Rejected Products Stack</h1>
+        <p class="text-muted">Stack uses LIFO (Last In First Out) behavior - most recently rejected products are at the top.</p>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            <strong>Stack Size:</strong> {{ stack_size }} rejected products
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h5>Rejected Products (Top to Bottom)</h5>
+            </div>
+            <div class="card-body">
+                {% if rejected %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product ID</th>
+                                    <th>Product Line</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Weight (g)</th>
+                                    <th>Defect Score</th>
+                                    <th>Rejection Reason</th>
+                                    <th>Production Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in rejected %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td><strong>{{ product.product_id }}</strong></td>
+                                    <td>{{ product.product_line }}</td>
+                                    <td>{{ product.size }}</td>
+                                    <td>{{ product.color }}</td>
+                                    <td>{{ "%.1f"|format(product.weight_g) }}</td>
+                                    <td>{{ "%.3f"|format(product.raw_defect_score) }}</td>
+                                    <td><span class="badge bg-danger">{{ product.rejection_reason or 'N/A' }}</span></td>
+                                    <td>{{ product.production_timestamp }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No rejected products. Stack is empty.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}
+
